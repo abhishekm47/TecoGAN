@@ -70,8 +70,8 @@ Flags.DEFINE_integer('crop_size', 32, 'The crop size of the training image')
 # Training data settings
 Flags.DEFINE_string('input_video_dir', '', 'The directory of the video input data, for training')
 Flags.DEFINE_string('input_video_pre', 'scene', 'The pre of the directory of the video input data')
-Flags.DEFINE_integer('str_dir', 1000, 'The starting index of the video directory')
-Flags.DEFINE_integer('end_dir', 2000, 'The ending index of the video directory')
+Flags.DEFINE_integer('str_dir', 2000, 'The starting index of the video directory')
+Flags.DEFINE_integer('end_dir', 2001, 'The ending index of the video directory')
 Flags.DEFINE_integer('end_dir_val', 2050, 'The ending index for validation of the video directory')
 Flags.DEFINE_integer('max_frm', 119, 'The ending index of the video directory')
 # The loss parameters
@@ -261,7 +261,7 @@ if FLAGS.mode == 'inference':
             
             if(i >= 5): 
                 name, _ = os.path.splitext(os.path.basename(str(inference_data.paths_LR[i])))
-                filename = FLAGS.output_name+'_'+name
+                filename = name
                 print('saving image %s' % filename)
                 out_path = os.path.join(image_dir, "%s.%s"%(filename,FLAGS.output_ext))
                 save_img(out_path, output_frame[0])

@@ -67,7 +67,7 @@ if( runcase == 0 ): # download inference data, trained models
 elif( runcase == 1 ): # inference a trained model
     
     dirstr = './results/' # the place to save the results
-    testpre = ['calendar'] # the test cases
+    testpre = ['ck_pt'] # the test cases
 
     if (not os.path.exists(dirstr)): os.mkdir(dirstr)
     
@@ -84,7 +84,7 @@ elif( runcase == 1 ): # inference a trained model
             "--output_pre", testpre[nn], # the subfolder to save current scene, optional
             "--num_resblock", "16",  # our model has 16 residual blocks, 
             # the pre-trained FRVSR and TecoGAN mini have 10 residual blocks
-            "--checkpoint", './model/TecoGAN',  # the path of the trained model,
+            "--checkpoint", './model/TecoGANTest',  # the path of the trained model,
             "--output_ext", "png"               # png is more accurate, jpg is smaller
         ]
         mycall(cmd1).communicate()
@@ -132,7 +132,7 @@ elif( runcase == 3 ): # Train TecoGAN
         cmd0 += "unzip model/ofrvsr.zip -d model; rm model/ofrvsr.zip"
         subprocess.call(cmd0, shell=True)
     
-    TrainingDataPath = "/mnt/netdisk/video_data/" 
+    TrainingDataPath = "/home/ubuntu/TecoGAN/HR_dataset/" 
     
     '''Prepare Training Folder'''
     # path appendix, manually define it, or use the current datetime, now_str = "mm-dd-hh"
@@ -178,8 +178,8 @@ elif( runcase == 3 ): # Train TecoGAN
         "--input_video_dir", TrainingDataPath, 
         "--input_video_pre", "scene",
         "--str_dir", "2000",
-        "--end_dir", "2250",
-        "--end_dir_val", "2290",
+        "--end_dir", "2034",
+        "--end_dir_val", "2037",
         "--max_frm", "119",
         # -- cpu memory for data loading --
         "--queue_thread", "12",# Cpu threads for the data. >4 to speedup the training

@@ -107,10 +107,13 @@ venv.bak/
 model
 # inputs
 LR
+LR_dataset
 # outputs
 results
 # targets
 HR
+HR_dataset
+rawDataset
 # runs
 ex_*
 tx_*
